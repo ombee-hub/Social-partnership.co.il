@@ -6,7 +6,7 @@ addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 1
 const burger = document.getElementById('burger'), navLinks = document.getElementById('navLinks');
 const drawerHead = document.createElement('li');
 drawerHead.className = 'drawer-head';
-drawerHead.innerHTML = '<b>שותפות חברתית</b><button class="drawer-close" aria-label="סגירת תפריט">✕</button>';
+drawerHead.innerHTML = '<a class="drawer-brand" href="index.html" aria-label="חזרה לדף הבית"><img src="images/logo-mark.png" alt="שותפות חברתית"><b>שותפות חברתית</b></a><button class="drawer-close" aria-label="סגירת תפריט">✕</button>';
 navLinks.prepend(drawerHead);
 const navOverlay = document.createElement('div');
 navOverlay.className = 'nav-overlay';
@@ -18,6 +18,7 @@ drawerHead.querySelector('.drawer-close').addEventListener('click', closeMenu);
 navOverlay.addEventListener('click', closeMenu);
 navLinks.addEventListener('click', e => { if (e.target.tagName === 'A') closeMenu(); });
 addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+addEventListener('resize', () => { if (innerWidth > 960) closeMenu(); });
 
 // build activities gallery (49 images) — only on the gallery page
 const actGal = document.getElementById('actGallery');
@@ -87,20 +88,25 @@ if (contactForm) {
 }
 
 // cookie consent banner
-if (!localStorage.getItem('sp-cookies-ok')) {
+if (!localStorage.getItem('sp-cookies-choice') && !localStorage.getItem('sp-cookies-ok')) {
   const banner = document.createElement('div');
   banner.className = 'cookie-banner show';
   banner.setAttribute('role', 'region');
   banner.setAttribute('aria-label', 'הודעת עוגיות');
   banner.innerHTML = `
     <div class="cookie-inner">
-      <p>אתר זה עושה שימוש בקבצי Cookie ובאחסון מקומי לצורך תפעול תקין של האתר ושמירת העדפות הגלישה והנגישות שלכם. למידע נוסף ראו את <a href="privacy.html">מדיניות הפרטיות</a> שלנו.</p>
+      <p>אתר זה עושה שימוש בקבצי Cookie ובאחסון מקומי לצורך תפעול תקין של האתר ושמירת העדפות הגלישה והנגישות שלכם/ן. למידע נוסף ראו את <a href="privacy.html">מדיניות הפרטיות</a> שלנו.</p>
       <div class="cookie-actions">
-        <button class="cookie-accept">הבנתי, אישור</button>
+        <button class="cookie-accept">אישור</button>
+        <button class="cookie-decline">דחייה</button>
       </div>
     </div>`;
   banner.querySelector('.cookie-accept').addEventListener('click', () => {
-    localStorage.setItem('sp-cookies-ok', '1');
+    localStorage.setItem('sp-cookies-choice', 'accepted');
+    banner.remove();
+  });
+  banner.querySelector('.cookie-decline').addEventListener('click', () => {
+    localStorage.setItem('sp-cookies-choice', 'declined');
     banner.remove();
   });
   document.body.appendChild(banner);
