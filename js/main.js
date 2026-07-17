@@ -101,15 +101,20 @@ if (!localStorage.getItem('sp-cookies-choice') && !localStorage.getItem('sp-cook
         <button class="cookie-decline">דחייה</button>
       </div>
     </div>`;
-  banner.querySelector('.cookie-accept').addEventListener('click', () => {
-    localStorage.setItem('sp-cookies-choice', 'accepted');
+  const closeBanner = choice => {
+    localStorage.setItem('sp-cookies-choice', choice);
     banner.remove();
-  });
-  banner.querySelector('.cookie-decline').addEventListener('click', () => {
-    localStorage.setItem('sp-cookies-choice', 'declined');
-    banner.remove();
-  });
+    document.body.classList.remove('cookie-open');
+    document.body.style.removeProperty('--cookie-h');
+  };
+  banner.querySelector('.cookie-accept').addEventListener('click', () => closeBanner('accepted'));
+  banner.querySelector('.cookie-decline').addEventListener('click', () => closeBanner('declined'));
   document.body.appendChild(banner);
+  // lift the floating buttons above the banner
+  const liftFabs = () => document.body.style.setProperty('--cookie-h', (banner.offsetHeight + 14) + 'px');
+  document.body.classList.add('cookie-open');
+  liftFabs();
+  addEventListener('resize', liftFabs);
 }
 
 // reveal on scroll
