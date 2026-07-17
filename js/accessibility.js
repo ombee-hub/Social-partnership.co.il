@@ -7,7 +7,7 @@
   .a11y-fab{position:fixed;bottom:26px;inset-inline-end:26px;z-index:300;width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;background:linear-gradient(135deg,#7b2fbe,#d61f6e 55%,#f7941d);display:grid;place-items:center;box-shadow:0 10px 30px -6px rgba(123,47,190,.6);transition:transform .25s}
   .a11y-fab:hover{transform:scale(1.1)}
   .a11y-fab svg{width:34px;height:34px;fill:#fff}
-  .a11y-panel{position:fixed;top:0;inset-inline-end:0;height:100dvh;width:340px;max-width:92vw;z-index:310;background:#fdfbf8;box-shadow:-10px 0 60px rgba(59,16,87,.3);transform:translateX(calc(-1 * var(--a11y-dir,-100%)));transition:transform .3s ease;display:flex;flex-direction:column;font-family:'Heebo',sans-serif}
+  .a11y-panel{position:fixed;top:0;inset-inline-end:0;height:100dvh;width:340px;max-width:92vw;z-index:310;background:#fdfbf8;box-shadow:-10px 0 60px rgba(59,16,87,.3);transform:translateX(calc(-1 * var(--a11y-dir,-100%)));transition:transform .3s ease;display:flex;flex-direction:column;font-family:'Assistant',sans-serif}
   html[dir="rtl"] .a11y-panel{transform:translateX(-100%)}
   html[dir="rtl"] .a11y-panel.open{transform:translateX(0)}
   .a11y-panel.open{transform:translateX(0)}
