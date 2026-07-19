@@ -6,7 +6,7 @@ addEventListener('scroll', () => header.classList.toggle('scrolled', scrollY > 1
 const burger = document.getElementById('burger'), navLinks = document.getElementById('navLinks');
 const drawerHead = document.createElement('li');
 drawerHead.className = 'drawer-head';
-drawerHead.innerHTML = '<a class="drawer-brand" href="index.html" aria-label="חזרה לדף הבית"><img src="images/logo-Social%20partnership.png" alt="שותפות חברתית"><b>שותפות חברתית</b></a><button class="drawer-close" aria-label="סגירת תפריט">✕</button>';
+drawerHead.innerHTML = '<a class="drawer-brand" href="index.html" aria-label="חזרה לדף הבית"><img src="images/logo-Social%20partnership.png" alt="שותפות חברתית"></a><button class="drawer-close" aria-label="סגירת תפריט">✕</button>';
 navLinks.prepend(drawerHead);
 const navOverlay = document.createElement('div');
 navOverlay.className = 'nav-overlay';
